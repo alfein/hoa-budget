@@ -141,6 +141,7 @@ export default function App() {
   const finalBalance = projection[projection.length - 1]?.endingBalance ?? startingBalance;
   const totalIncome = projection.reduce((sum, row) => sum + row.income, 0);
   const totalExpenses = projection.reduce((sum, row) => sum + row.expenses, 0);
+  const hasNegativeBalance = projection.some((row) => row.endingBalance < 0);
 
   const updateExpense = (id: string, field: 'cost' | 'frequency' | 'startYear', value: string) => {
     const parsedValue = Number(value) || 0;
@@ -233,6 +234,10 @@ export default function App() {
             <article className="summary-card">
               <h3>Total expenses</h3>
               <p>{formatCurrency(totalExpenses)}</p>
+            </article>
+            <article className={`summary-card ${hasNegativeBalance ? 'negative' : 'positive'}`}>
+              <h3>Balance status</h3>
+              <p>{hasNegativeBalance ? 'Negative years detected' : 'All years positive'}</p>
             </article>
           </div>
         </section>
