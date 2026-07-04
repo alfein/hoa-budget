@@ -161,13 +161,19 @@ export default function App() {
             Enter the assessment income and each planned expense with its timing, then review the annual balance over the next 25 years.
           </p>
         </div>
+        <div className="hero-cards-row">
+            <article className={`summary-card ${hasNegativeBalance ? 'negative' : 'positive'}`}>
+              <h3>Balance status</h3>
+              <p>{hasNegativeBalance ? 'Negative years detected' : 'All years positive'}</p>
+            </article>
+        </div>
         <div className="hero-summary">
           <span>Projected balance in year 25</span>
           <strong>{formatCurrency(finalBalance)}</strong>
           <button type="button" className="save-button" onClick={saveState}>
             Save
           </button>
-        </div>
+        </div>        
       </header>
 
       <main className="content-grid">
@@ -234,10 +240,6 @@ export default function App() {
             <article className="summary-card">
               <h3>Total expenses</h3>
               <p>{formatCurrency(totalExpenses)}</p>
-            </article>
-            <article className={`summary-card ${hasNegativeBalance ? 'negative' : 'positive'}`}>
-              <h3>Balance status</h3>
-              <p>{hasNegativeBalance ? 'Negative years detected' : 'All years positive'}</p>
             </article>
           </div>
         </section>
