@@ -19,8 +19,8 @@ export default function App() {
   const [assessmentAmount, setAssessmentAmount] = useState(() => loadState().assessmentAmount);
   const [projectionYears, setProjectionYears] = useState(() => loadState().projectionYears);
   const [expenses, setExpenses] = useState(() => loadState().expenses);
-  const [isIncomeCollapsed, setIsIncomeCollapsed] = useState(false);
-  const [isExpensesCollapsed, setIsExpensesCollapsed] = useState(false);
+  const [isIncomeCollapsed, setIsIncomeCollapsed] = useState(() => window.innerWidth < 640);
+  const [isExpensesCollapsed, setIsExpensesCollapsed] = useState(() => window.innerWidth < 640);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640);
 
   useMemo(() => {
